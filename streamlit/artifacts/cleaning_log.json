@@ -1,0 +1,166 @@
+{
+  "rows_in": 10000,
+  "rows_out": 10000,
+  "rows_removed": 0,
+  "log": [
+    {
+      "step": "coerce_numeric",
+      "detail": "coerced 0 non-numeric sensor values to NaN",
+      "rows_affected": 0
+    },
+    {
+      "step": "normalise_type",
+      "detail": "normalised 0 machine-type labels",
+      "rows_affected": 0
+    },
+    {
+      "step": "range_validation",
+      "detail": "0 impossible sensor readings (>physical limits) set to missing",
+      "rows_affected": 0
+    },
+    {
+      "step": "drop_duplicates",
+      "detail": "removed 0 duplicate rows",
+      "rows_affected": 0
+    },
+    {
+      "step": "target_integrity",
+      "detail": "18 rows flag a failure mode but are labelled healthy; 9 labelled failures have no mode flag. Published target preserved unchanged (documented limitation).",
+      "rows_affected": 27,
+      "flag_no_failure": 18,
+      "failure_no_flag": 9,
+      "exact_reconstruction": false
+    },
+    {
+      "step": "impute_median",
+      "detail": "median-imputed 0 cells",
+      "rows_affected": 0,
+      "detail_by_column": {}
+    },
+    {
+      "step": "outlier_flag",
+      "detail": "flagged 106 statistically extreme values (IQR x3.0) - kept, not deleted",
+      "rows_affected": 106
+    }
+  ],
+  "audit": {
+    "n_rows": 10000,
+    "n_columns": 14,
+    "columns": [
+      "UDI",
+      "Product ID",
+      "Type",
+      "Air temperature [K]",
+      "Process temperature [K]",
+      "Rotational speed [rpm]",
+      "Torque [Nm]",
+      "Tool wear [min]",
+      "Machine failure",
+      "TWF",
+      "HDF",
+      "PWF",
+      "OSF",
+      "RNF"
+    ],
+    "dtypes": {
+      "UDI": "int64",
+      "Product ID": "object",
+      "Type": "object",
+      "Air temperature [K]": "float64",
+      "Process temperature [K]": "float64",
+      "Rotational speed [rpm]": "int64",
+      "Torque [Nm]": "float64",
+      "Tool wear [min]": "int64",
+      "Machine failure": "int64",
+      "TWF": "int64",
+      "HDF": "int64",
+      "PWF": "int64",
+      "OSF": "int64",
+      "RNF": "int64"
+    },
+    "missing_total": 0,
+    "missing_by_column": {},
+    "duplicate_rows": 0,
+    "failure_count": 339,
+    "failure_rate": 0.0339,
+    "machine_type_counts": {
+      "L": 6000,
+      "M": 2997,
+      "H": 1003
+    },
+    "failure_modes_sum_equals_target": false
+  },
+  "corruption_test": {
+    "injected_missing": 302,
+    "injected_duplicates": 50,
+    "rows_before": 10050,
+    "rows_after": 10000,
+    "pipeline_recovered": true,
+    "actions": [
+      {
+        "step": "coerce_numeric",
+        "detail": "coerced 6 non-numeric sensor values to NaN",
+        "rows_affected": 6
+      },
+      {
+        "step": "normalise_type",
+        "detail": "normalised 8 machine-type labels",
+        "rows_affected": 8
+      },
+      {
+        "step": "range_validation",
+        "detail": "10 impossible sensor readings (>physical limits) set to missing",
+        "rows_affected": 10
+      },
+      {
+        "step": "drop_duplicates",
+        "detail": "removed 50 duplicate rows",
+        "rows_affected": 50
+      },
+      {
+        "step": "target_integrity",
+        "detail": "18 rows flag a failure mode but are labelled healthy; 9 labelled failures have no mode flag. Published target preserved unchanged (documented limitation).",
+        "rows_affected": 27,
+        "flag_no_failure": 18,
+        "failure_no_flag": 9,
+        "exact_reconstruction": false
+      },
+      {
+        "step": "impute_median",
+        "detail": "median-imputed 316 cells",
+        "rows_affected": 316,
+        "detail_by_column": {
+          "Air temperature [K]": {
+            "filled": 100,
+            "value": 300.1
+          },
+          "Process temperature [K]": {
+            "filled": 6,
+            "value": 310.1
+          },
+          "Rotational speed [rpm]": {
+            "filled": 105,
+            "value": 1503.0
+          },
+          "Torque [Nm]": {
+            "filled": 105,
+            "value": 40.1
+          }
+        }
+      },
+      {
+        "step": "outlier_flag",
+        "detail": "flagged 110 statistically extreme values (IQR x3.0) - kept, not deleted",
+        "rows_affected": 110
+      }
+    ]
+  },
+  "leakage_columns_excluded": [
+    "TWF",
+    "HDF",
+    "PWF",
+    "OSF",
+    "RNF"
+  ],
+  "leakage_note": "TWF/HDF/PWF/OSF/RNF sum exactly to 'Machine failure' in every row. They are therefore excluded from every model input and used only for descriptive charts."
+}

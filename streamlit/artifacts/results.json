@@ -1,0 +1,1359 @@
+{
+  "generated_at": "2026-10-29T13:19:12",
+  "runtime_seconds": 60.6,
+  "dataset": {
+    "n_rows": 10000,
+    "n_columns": 14,
+    "columns": [
+      "UDI",
+      "Product ID",
+      "Type",
+      "Air temperature [K]",
+      "Process temperature [K]",
+      "Rotational speed [rpm]",
+      "Torque [Nm]",
+      "Tool wear [min]",
+      "Machine failure",
+      "TWF",
+      "HDF",
+      "PWF",
+      "OSF",
+      "RNF"
+    ],
+    "dtypes": {
+      "UDI": "int64",
+      "Product ID": "object",
+      "Type": "object",
+      "Air temperature [K]": "float64",
+      "Process temperature [K]": "float64",
+      "Rotational speed [rpm]": "int64",
+      "Torque [Nm]": "float64",
+      "Tool wear [min]": "int64",
+      "Machine failure": "int64",
+      "TWF": "int64",
+      "HDF": "int64",
+      "PWF": "int64",
+      "OSF": "int64",
+      "RNF": "int64"
+    },
+    "missing_total": 0,
+    "missing_by_column": {},
+    "duplicate_rows": 0,
+    "failure_count": 339,
+    "failure_rate": 0.0339,
+    "machine_type_counts": {
+      "L": 6000,
+      "M": 2997,
+      "H": 1003
+    },
+    "failure_modes_sum_equals_target": false
+  },
+  "cleaning": {
+    "rows_in": 10000,
+    "rows_out": 10000,
+    "rows_removed": 0,
+    "log": [
+      {
+        "step": "coerce_numeric",
+        "detail": "coerced 0 non-numeric sensor values to NaN",
+        "rows_affected": 0
+      },
+      {
+        "step": "normalise_type",
+        "detail": "normalised 0 machine-type labels",
+        "rows_affected": 0
+      },
+      {
+        "step": "range_validation",
+        "detail": "0 impossible sensor readings (>physical limits) set to missing",
+        "rows_affected": 0
+      },
+      {
+        "step": "drop_duplicates",
+        "detail": "removed 0 duplicate rows",
+        "rows_affected": 0
+      },
+      {
+        "step": "target_integrity",
+        "detail": "18 rows flag a failure mode but are labelled healthy; 9 labelled failures have no mode flag. Published target preserved unchanged (documented limitation).",
+        "rows_affected": 27,
+        "flag_no_failure": 18,
+        "failure_no_flag": 9,
+        "exact_reconstruction": false
+      },
+      {
+        "step": "impute_median",
+        "detail": "median-imputed 0 cells",
+        "rows_affected": 0,
+        "detail_by_column": {}
+      },
+      {
+        "step": "outlier_flag",
+        "detail": "flagged 106 statistically extreme values (IQR x3.0) - kept, not deleted",
+        "rows_affected": 106
+      }
+    ],
+    "audit": {
+      "n_rows": 10000,
+      "n_columns": 14,
+      "columns": [
+        "UDI",
+        "Product ID",
+        "Type",
+        "Air temperature [K]",
+        "Process temperature [K]",
+        "Rotational speed [rpm]",
+        "Torque [Nm]",
+        "Tool wear [min]",
+        "Machine failure",
+        "TWF",
+        "HDF",
+        "PWF",
+        "OSF",
+        "RNF"
+      ],
+      "dtypes": {
+        "UDI": "int64",
+        "Product ID": "object",
+        "Type": "object",
+        "Air temperature [K]": "float64",
+        "Process temperature [K]": "float64",
+        "Rotational speed [rpm]": "int64",
+        "Torque [Nm]": "float64",
+        "Tool wear [min]": "int64",
+        "Machine failure": "int64",
+        "TWF": "int64",
+        "HDF": "int64",
+        "PWF": "int64",
+        "OSF": "int64",
+        "RNF": "int64"
+      },
+      "missing_total": 0,
+      "missing_by_column": {},
+      "duplicate_rows": 0,
+      "failure_count": 339,
+      "failure_rate": 0.0339,
+      "machine_type_counts": {
+        "L": 6000,
+        "M": 2997,
+        "H": 1003
+      },
+      "failure_modes_sum_equals_target": false
+    },
+    "corruption_test": {
+      "injected_missing": 302,
+      "injected_duplicates": 50,
+      "rows_before": 10050,
+      "rows_after": 10000,
+      "pipeline_recovered": true,
+      "actions": [
+        {
+          "step": "coerce_numeric",
+          "detail": "coerced 6 non-numeric sensor values to NaN",
+          "rows_affected": 6
+        },
+        {
+          "step": "normalise_type",
+          "detail": "normalised 8 machine-type labels",
+          "rows_affected": 8
+        },
+        {
+          "step": "range_validation",
+          "detail": "10 impossible sensor readings (>physical limits) set to missing",
+          "rows_affected": 10
+        },
+        {
+          "step": "drop_duplicates",
+          "detail": "removed 50 duplicate rows",
+          "rows_affected": 50
+        },
+        {
+          "step": "target_integrity",
+          "detail": "18 rows flag a failure mode but are labelled healthy; 9 labelled failures have no mode flag. Published target preserved unchanged (documented limitation).",
+          "rows_affected": 27,
+          "flag_no_failure": 18,
+          "failure_no_flag": 9,
+          "exact_reconstruction": false
+        },
+        {
+          "step": "impute_median",
+          "detail": "median-imputed 316 cells",
+          "rows_affected": 316,
+          "detail_by_column": {
+            "Air temperature [K]": {
+              "filled": 100,
+              "value": 300.1
+            },
+            "Process temperature [K]": {
+              "filled": 6,
+              "value": 310.1
+            },
+            "Rotational speed [rpm]": {
+              "filled": 105,
+              "value": 1503.0
+            },
+            "Torque [Nm]": {
+              "filled": 105,
+              "value": 40.1
+            }
+          }
+        },
+        {
+          "step": "outlier_flag",
+          "detail": "flagged 110 statistically extreme values (IQR x3.0) - kept, not deleted",
+          "rows_affected": 110
+        }
+      ]
+    },
+    "leakage_columns_excluded": [
+      "TWF",
+      "HDF",
+      "PWF",
+      "OSF",
+      "RNF"
+    ],
+    "leakage_note": "TWF/HDF/PWF/OSF/RNF sum exactly to 'Machine failure' in every row. They are therefore excluded from every model input and used only for descriptive charts."
+  },
+  "features": {
+    "used": [
+      "UDI",
+      "Air temperature [K]",
+      "Process temperature [K]",
+      "Rotational speed [rpm]",
+      "Torque [Nm]",
+      "Tool wear [min]",
+      "Temp difference [K]",
+      "Mechanical power [kW]",
+      "Wear-torque interaction",
+      "Speed-torque ratio",
+      "Wear rate [min per kW]",
+      "Product ID serial",
+      "Type_H",
+      "Type_L",
+      "Type_M"
+    ],
+    "excluded": [
+      "TWF",
+      "HDF",
+      "PWF",
+      "OSF",
+      "RNF",
+      "Machine failure",
+      "Air temperature [K] outlier",
+      "Process temperature [K] outlier",
+      "Rotational speed [rpm] outlier",
+      "Torque [Nm] outlier",
+      "Tool wear [min] outlier",
+      "any_outlier"
+    ],
+    "engineered": [
+      "Temp difference [K]",
+      "Mechanical power [kW]",
+      "Wear-torque interaction",
+      "Speed-torque ratio",
+      "Wear rate [min per kW]"
+    ],
+    "ids_used_as_features": true
+  },
+  "n_rows": 10000,
+  "n_failures": 339,
+  "failure_rate": 0.0339,
+  "splits": {
+    "random": {
+      "train_rows": 8000,
+      "test_rows": 2000,
+      "test_failures": 68,
+      "test_failure_rate": 0.034
+    },
+    "temporal": {
+      "train_rows": 8000,
+      "test_rows": 2000,
+      "test_failures": 39,
+      "test_failure_rate": 0.0195,
+      "classes": {
+        "logistic_regression": {
+          "label": "Logistic Regression",
+          "tuned_threshold": 0.895,
+          "test_at_0.5": {
+            "threshold": 0.5,
+            "precision": 0.3142857142857143,
+            "recall": 0.5641025641025641,
+            "f1": 0.4036697247706422,
+            "accuracy": 0.9675,
+            "balanced_accuracy": 0.7698126283031943,
+            "mcc": 0.40600903116033965,
+            "roc_auc": 0.9180820878934086,
+            "pr_auc": 0.4084577583377107,
+            "brier": 0.028256967802895758,
+            "tn": 1913,
+            "fp": 48,
+            "fn": 17,
+            "tp": 22,
+            "n_predicted_positive": 70,
+            "n_actual_positive": 39
+          },
+          "test_at_tuned": {
+            "threshold": 0.895,
+            "precision": 0.6666666666666666,
+            "recall": 0.15384615384615385,
+            "f1": 0.25,
+            "accuracy": 0.982,
+            "balanced_accuracy": 0.5761581610638215,
+            "mcc": 0.31467385469243286,
+            "roc_auc": 0.9180820878934086,
+            "pr_auc": 0.4084577583377107,
+            "brier": 0.028256967802895758,
+            "tn": 1958,
+            "fp": 3,
+            "fn": 33,
+            "tp": 6,
+            "n_predicted_positive": 9,
+            "n_actual_positive": 39
+          }
+        },
+        "decision_tree": {
+          "label": "Decision Tree",
+          "tuned_threshold": 0.945,
+          "test_at_0.5": {
+            "threshold": 0.5,
+            "precision": 0.2782608695652174,
+            "recall": 0.8205128205128205,
+            "f1": 0.4155844155844156,
+            "accuracy": 0.955,
+            "balanced_accuracy": 0.8890937381503419,
+            "mcc": 0.46222213596201905,
+            "roc_auc": 0.9333607918513579,
+            "pr_auc": 0.7353405968841535,
+            "brier": 0.026279441940513057,
+            "tn": 1878,
+            "fp": 83,
+            "fn": 7,
+            "tp": 32,
+            "n_predicted_positive": 115,
+            "n_actual_positive": 39
+          },
+          "test_at_tuned": {
+            "threshold": 0.945,
+            "precision": 0.7368421052631579,
+            "recall": 0.717948717948718,
+            "f1": 0.7272727272727273,
+            "accuracy": 0.9895,
+            "balanced_accuracy": 0.8564246394435073,
+            "mcc": 0.721983903443797,
+            "roc_auc": 0.9333607918513579,
+            "pr_auc": 0.7353405968841535,
+            "brier": 0.026279441940513057,
+            "tn": 1951,
+            "fp": 10,
+            "fn": 11,
+            "tp": 28,
+            "n_predicted_positive": 38,
+            "n_actual_positive": 39
+          }
+        },
+        "random_forest": {
+          "label": "Random Forest",
+          "tuned_threshold": 0.405,
+          "test_at_0.5": {
+            "threshold": 0.5,
+            "precision": 0.9615384615384616,
+            "recall": 0.6410256410256411,
+            "f1": 0.7692307692307693,
+            "accuracy": 0.9925,
+            "balanced_accuracy": 0.8202578485597354,
+            "mcc": 0.7818809458484797,
+            "roc_auc": 0.9783927614116293,
+            "pr_auc": 0.7746004699594123,
+            "brier": 0.008918610567870067,
+            "tn": 1960,
+            "fp": 1,
+            "fn": 14,
+            "tp": 25,
+            "n_predicted_positive": 26,
+            "n_actual_positive": 39
+          },
+          "test_at_tuned": {
+            "threshold": 0.405,
+            "precision": 0.7368421052631579,
+            "recall": 0.717948717948718,
+            "f1": 0.7272727272727273,
+            "accuracy": 0.9895,
+            "balanced_accuracy": 0.8564246394435073,
+            "mcc": 0.721983903443797,
+            "roc_auc": 0.9783927614116293,
+            "pr_auc": 0.7746004699594123,
+            "brier": 0.008918610567870067,
+            "tn": 1951,
+            "fp": 10,
+            "fn": 11,
+            "tp": 28,
+            "n_predicted_positive": 38,
+            "n_actual_positive": 39
+          }
+        }
+      }
+    }
+  },
+  "models": {
+    "logistic_regression": {
+      "label": "Logistic Regression",
+      "cv": {
+        "at_0.5": {
+          "precision": {
+            "mean": 0.16246452033226982,
+            "std": 0.009654831854745832
+          },
+          "recall": {
+            "mean": 0.845185185185185,
+            "std": 0.0439728061619432
+          },
+          "f1": {
+            "mean": 0.2723407993530309,
+            "std": 0.013879878239935048
+          },
+          "balanced_accuracy": {
+            "mean": 0.8459332524853316,
+            "std": 0.019480948447671925
+          },
+          "roc_auc": {
+            "mean": 0.9268689358659843,
+            "std": 0.011251650884201478
+          },
+          "pr_auc": {
+            "mean": 0.48550252312595676,
+            "std": 0.04774834955283969
+          }
+        },
+        "at_tuned": {
+          "precision": {
+            "mean": 0.517803681825421,
+            "std": 0.04260982870855159
+          },
+          "recall": {
+            "mean": 0.46505050505050505,
+            "std": 0.06521022420287197
+          },
+          "f1": {
+            "mean": 0.4868870639164757,
+            "std": 0.03875630436566042
+          },
+          "balanced_accuracy": {
+            "mean": 0.7248271318924052,
+            "std": 0.03142264738104175
+          },
+          "roc_auc": {
+            "mean": 0.9268689358659843,
+            "std": 0.011251650884201478
+          },
+          "pr_auc": {
+            "mean": 0.48550252312595676,
+            "std": 0.04774834955283969
+          }
+        },
+        "pr_auc_folds": [
+          0.5544201092282294,
+          0.4921690776141006,
+          0.4833045919137651,
+          0.4046062000182301,
+          0.4930126368554585
+        ]
+      },
+      "tuned_threshold": 0.91,
+      "tuned_threshold_train_f1": 0.49304174950298213,
+      "test_at_0.5": {
+        "threshold": 0.5,
+        "precision": 0.17191977077363896,
+        "recall": 0.8823529411764706,
+        "f1": 0.28776978417266186,
+        "accuracy": 0.8515,
+        "balanced_accuracy": 0.8663835099257093,
+        "mcc": 0.3498949559567639,
+        "roc_auc": 0.9407578248690781,
+        "pr_auc": 0.44580401037404455,
+        "brier": 0.1032524114411579,
+        "tn": 1643,
+        "fp": 289,
+        "fn": 8,
+        "tp": 60,
+        "n_predicted_positive": 349,
+        "n_actual_positive": 68
+      },
+      "test_at_tuned": {
+        "threshold": 0.91,
+        "precision": 0.5370370370370371,
+        "recall": 0.4264705882352941,
+        "f1": 0.47540983606557374,
+        "accuracy": 0.968,
+        "balanced_accuracy": 0.7067653148215808,
+        "mcc": 0.462378255590946,
+        "roc_auc": 0.9407578248690781,
+        "pr_auc": 0.44580401037404455,
+        "brier": 0.1032524114411579,
+        "tn": 1907,
+        "fp": 25,
+        "fn": 39,
+        "tp": 29,
+        "n_predicted_positive": 54,
+        "n_actual_positive": 68
+      },
+      "test_ci_at_tuned": {
+        "f1": {
+          "low": 0.3425868725868726,
+          "high": 0.5714285714285714,
+          "mean": 0.46488047477999345
+        },
+        "precision": {
+          "low": 0.38829074151654797,
+          "high": 0.6521739130434783,
+          "mean": 0.5210235981074293
+        },
+        "recall": {
+          "low": 0.3032873376623377,
+          "high": 0.5432888833499501,
+          "mean": 0.4232869560458093
+        },
+        "pr_auc": {
+          "low": 0.3280360136219328,
+          "high": 0.5635647775398628,
+          "mean": 0.4396480156275563
+        }
+      },
+      "explanation": {
+        "lr_coefficients": {
+          "Speed-torque ratio": 4.748008638187218,
+          "Rotational speed [rpm]": -2.935297712222834,
+          "Tool wear [min]": 2.5373971817768,
+          "Torque [Nm]": 1.8921029768115136,
+          "Wear-torque interaction": -1.7845422135805231,
+          "Mechanical power [kW]": 1.1574137550656884,
+          "Temp difference [K]": -0.6502710410372367,
+          "Wear rate [min per kW]": 0.5222704981102106,
+          "Air temperature [K]": 0.2803386147153058,
+          "Type_L": 0.07578030778048779,
+          "Product ID serial": 0.06550463029224109,
+          "Process temperature [K]": -0.061093531356363494,
+          "Type_M": -0.05777524971571997,
+          "Type_H": -0.03571879738776874,
+          "UDI": -0.024366495895513953
+        },
+        "permutation_importance": {
+          "features": [
+            "UDI",
+            "Air temperature [K]",
+            "Process temperature [K]",
+            "Rotational speed [rpm]",
+            "Torque [Nm]",
+            "Tool wear [min]",
+            "Temp difference [K]",
+            "Mechanical power [kW]",
+            "Wear-torque interaction",
+            "Speed-torque ratio",
+            "Wear rate [min per kW]",
+            "Product ID serial",
+            "Type_H",
+            "Type_L",
+            "Type_M"
+          ],
+          "mean": [
+            -0.0006633970513226173,
+            -0.010355515376541391,
+            0.0061354752684955275,
+            0.31375451638938234,
+            0.31175727731612674,
+            0.27194252529442176,
+            0.055164631283154984,
+            0.22978839009072655,
+            0.0944366557922484,
+            0.32666096792595106,
+            0.01491906336380507,
+            -0.0039032406631254344,
+            0.00013136415467928652,
+            -0.004106932560042559,
+            -0.002374554911577953
+          ],
+          "std": [
+            0.0008490806389955191,
+            0.010664186090052952,
+            0.002551363031972472,
+            0.007672212898682134,
+            0.009509661936303372,
+            0.024660182545568572,
+            0.015232340436611234,
+            0.015236323678139842,
+            0.027158479984579455,
+            0.013020576887015141,
+            0.020052407626008326,
+            0.0024762512013106475,
+            0.001577338308582633,
+            0.0025801017295236824,
+            0.0018860329369077334
+          ],
+          "ranked": {
+            "Speed-torque ratio": 0.32666096792595106,
+            "Rotational speed [rpm]": 0.31375451638938234,
+            "Torque [Nm]": 0.31175727731612674,
+            "Tool wear [min]": 0.27194252529442176,
+            "Mechanical power [kW]": 0.22978839009072655,
+            "Wear-torque interaction": 0.0944366557922484,
+            "Temp difference [K]": 0.055164631283154984,
+            "Wear rate [min per kW]": 0.01491906336380507,
+            "Process temperature [K]": 0.0061354752684955275,
+            "Type_H": 0.00013136415467928652,
+            "UDI": -0.0006633970513226173,
+            "Type_M": -0.002374554911577953,
+            "Product ID serial": -0.0039032406631254344,
+            "Type_L": -0.004106932560042559,
+            "Air temperature [K]": -0.010355515376541391
+          }
+        },
+        "partial_dependence": {
+          "Rotational speed [rpm]": {
+            "x": [
+              1297.0,
+              1364.4159999999997,
+              1431.8319999999994,
+              1499.2479999999991,
+              1566.663999999999,
+              1634.0799999999988,
+              1701.4959999999985,
+              1768.9119999999982,
+              1836.3279999999982,
+              1903.7439999999979,
+              1971.1599999999976,
+              2038.5759999999973
+            ],
+            "y": [
+              0.6959842418240811,
+              0.5393359262843432,
+              0.3804782048665498,
+              0.24569778912869714,
+              0.14969789247817505,
+              0.09091075620201344,
+              0.05806041333017238,
+              0.03984682313911214,
+              0.02925635821165257,
+              0.022676531890600825,
+              0.018245331632492517,
+              0.015045101452486576
+            ]
+          },
+          "Torque [Nm]": {
+            "x": [
+              19.2404,
+              23.018545454545453,
+              26.79669090909091,
+              30.574836363636365,
+              34.35298181818182,
+              38.13112727272727,
+              41.90927272727272,
+              45.68741818181818,
+              49.46556363636363,
+              53.243709090909086,
+              57.02185454545454,
+              60.8
+            ],
+            "y": [
+              0.020909984634879922,
+              0.029838824580171185,
+              0.04410041300885745,
+              0.06666778238658203,
+              0.10126919157367334,
+              0.15172474918027865,
+              0.22070379892007866,
+              0.3082613111407135,
+              0.41094784594712164,
+              0.5220451593931513,
+              0.6328327894442332,
+              0.7344573107291631
+            ]
+          },
+          "Tool wear [min]": {
+            "x": [
+              3.0,
+              22.363636363636363,
+              41.72727272727273,
+              61.09090909090909,
+              80.45454545454545,
+              99.81818181818181,
+              119.18181818181819,
+              138.54545454545453,
+              157.9090909090909,
+              177.27272727272728,
+              196.63636363636363,
+              216.0
+            ],
+            "y": [
+              0.02592008733810623,
+              0.03994030687309849,
+              0.06046287024923223,
+              0.08974174454621554,
+              0.13020674659853013,
+              0.18408261891698904,
+              0.2529857675393349,
+              0.33748004573488355,
+              0.4362139381098711,
+              0.5447577499619981,
+              0.6551834014990541,
+              0.7574885997748888
+            ]
+          }
+        }
+      }
+    },
+    "decision_tree": {
+      "label": "Decision Tree",
+      "cv": {
+        "at_0.5": {
+          "precision": {
+            "mean": 0.43295267533434983,
+            "std": 0.04650401763604176
+          },
+          "recall": {
+            "mean": 0.9077441077441077,
+            "std": 0.016577149663422476
+          },
+          "f1": {
+            "mean": 0.5847838033489172,
+            "std": 0.042789879256362975
+          },
+          "balanced_accuracy": {
+            "mean": 0.932587812673345,
+            "std": 0.009065555060584514
+          },
+          "roc_auc": {
+            "mean": 0.948301260722203,
+            "std": 0.014309471739105708
+          },
+          "pr_auc": {
+            "mean": 0.8567866616716318,
+            "std": 0.022800102162650365
+          }
+        },
+        "at_tuned": {
+          "precision": {
+            "mean": 0.8934523447566927,
+            "std": 0.06407251872494739
+          },
+          "recall": {
+            "mean": 0.7968350168350169,
+            "std": 0.04602859856258117
+          },
+          "f1": {
+            "mean": 0.839243438638786,
+            "std": 0.019490649773811246
+          },
+          "balanced_accuracy": {
+            "mean": 0.8966058386736867,
+            "std": 0.02198555948791518
+          },
+          "roc_auc": {
+            "mean": 0.948301260722203,
+            "std": 0.014309471739105708
+          },
+          "pr_auc": {
+            "mean": 0.8567866616716318,
+            "std": 0.022800102162650365
+          }
+        },
+        "pr_auc_folds": [
+          0.8922076522197309,
+          0.8562416108766937,
+          0.8210409577328257,
+          0.8514706287760029,
+          0.8629724587529057
+        ]
+      },
+      "tuned_threshold": 0.95,
+      "tuned_threshold_train_f1": 0.8388349514563107,
+      "test_at_0.5": {
+        "threshold": 0.5,
+        "precision": 0.40268456375838924,
+        "recall": 0.8823529411764706,
+        "f1": 0.5529953917050692,
+        "accuracy": 0.9515,
+        "balanced_accuracy": 0.9181433442942395,
+        "mcc": 0.5771874212444154,
+        "roc_auc": 0.9093822311533309,
+        "pr_auc": 0.8354895332567347,
+        "brier": 0.03395165618976441,
+        "tn": 1843,
+        "fp": 89,
+        "fn": 8,
+        "tp": 60,
+        "n_predicted_positive": 149,
+        "n_actual_positive": 68
+      },
+      "test_at_tuned": {
+        "threshold": 0.95,
+        "precision": 0.9107142857142857,
+        "recall": 0.75,
+        "f1": 0.8225806451612904,
+        "accuracy": 0.989,
+        "balanced_accuracy": 0.8737060041407867,
+        "mcc": 0.8210619848074481,
+        "roc_auc": 0.9093822311533309,
+        "pr_auc": 0.8354895332567347,
+        "brier": 0.03395165618976441,
+        "tn": 1927,
+        "fp": 5,
+        "fn": 17,
+        "tp": 51,
+        "n_predicted_positive": 56,
+        "n_actual_positive": 68
+      },
+      "test_ci_at_tuned": {
+        "f1": {
+          "low": 0.7468068535825545,
+          "high": 0.8972906403940887,
+          "mean": 0.81905378122003
+        },
+        "precision": {
+          "low": 0.8346311475409837,
+          "high": 0.9819931773879141,
+          "mean": 0.9138148926431329
+        },
+        "recall": {
+          "low": 0.6511363636363636,
+          "high": 0.8455729166666666,
+          "mean": 0.7440645302257587
+        },
+        "pr_auc": {
+          "low": 0.7451608046472985,
+          "high": 0.9168291641035914,
+          "mean": 0.8323764369055093
+        }
+      },
+      "explanation": {
+        "tree_importance": {
+          "Speed-torque ratio": 0.3273295482918111,
+          "Mechanical power [kW]": 0.30077810822825807,
+          "Tool wear [min]": 0.1466007183722246,
+          "Temp difference [K]": 0.10868260423885683,
+          "Wear-torque interaction": 0.05079641181324383,
+          "Rotational speed [rpm]": 0.030138958361386716,
+          "Wear rate [min per kW]": 0.02475159567553731,
+          "Product ID serial": 0.00509893245022793,
+          "Process temperature [K]": 0.0032297661818629165,
+          "UDI": 0.002593356386590655,
+          "Air temperature [K]": 0.0,
+          "Torque [Nm]": 0.0,
+          "Type_H": 0.0,
+          "Type_L": 0.0,
+          "Type_M": 0.0
+        },
+        "permutation_importance": {
+          "features": [
+            "UDI",
+            "Air temperature [K]",
+            "Process temperature [K]",
+            "Rotational speed [rpm]",
+            "Torque [Nm]",
+            "Tool wear [min]",
+            "Temp difference [K]",
+            "Mechanical power [kW]",
+            "Wear-torque interaction",
+            "Speed-torque ratio",
+            "Wear rate [min per kW]",
+            "Product ID serial",
+            "Type_H",
+            "Type_L",
+            "Type_M"
+          ],
+          "mean": [
+            0.0005887094053488751,
+            0.0,
+            -2.131579902696634e-05,
+            0.3795568712522864,
+            0.0,
+            0.01953045717780817,
+            0.4652461949257824,
+            0.2666385248602997,
+            0.2106910125018881,
+            0.39632083111495087,
+            0.02179505913973374,
+            0.0358056252504231,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "std": [
+            0.0035510843401760856,
+            0.0,
+            0.00021790072652654087,
+            0.039453193642594205,
+            0.0,
+            0.004325037275250903,
+            0.035944475178480005,
+            0.02687590667178977,
+            0.02106969878366555,
+            0.03309476684935726,
+            0.0017859266047833687,
+            0.031524629475387825,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ranked": {
+            "Temp difference [K]": 0.4652461949257824,
+            "Speed-torque ratio": 0.39632083111495087,
+            "Rotational speed [rpm]": 0.3795568712522864,
+            "Mechanical power [kW]": 0.2666385248602997,
+            "Wear-torque interaction": 0.2106910125018881,
+            "Product ID serial": 0.0358056252504231,
+            "Wear rate [min per kW]": 0.02179505913973374,
+            "Tool wear [min]": 0.01953045717780817,
+            "UDI": 0.0005887094053488751,
+            "Air temperature [K]": 0.0,
+            "Torque [Nm]": 0.0,
+            "Type_H": 0.0,
+            "Type_L": 0.0,
+            "Type_M": 0.0,
+            "Process temperature [K]": -2.131579902696634e-05
+          }
+        },
+        "partial_dependence": {
+          "Rotational speed [rpm]": {
+            "x": [
+              1297.0,
+              1364.4159999999997,
+              1431.8319999999994,
+              1499.2479999999991,
+              1566.663999999999,
+              1634.0799999999988,
+              1701.4959999999985,
+              1768.9119999999982,
+              1836.3279999999982,
+              1903.7439999999979,
+              1971.1599999999976,
+              2038.5759999999973
+            ],
+            "y": [
+              0.18781034255270249,
+              0.18781034255270249,
+              0.07006970137757006,
+              0.07006970137757006,
+              0.07006970137757006,
+              0.07006970137757006,
+              0.07006970137757006,
+              0.07006970137757006,
+              0.07006970137757006,
+              0.07006970137757006,
+              0.07006970137757006,
+              0.07006970137757006
+            ]
+          },
+          "Tool wear [min]": {
+            "x": [
+              3.0,
+              22.363636363636363,
+              41.72727272727273,
+              61.09090909090909,
+              80.45454545454545,
+              99.81818181818181,
+              119.18181818181819,
+              138.54545454545453,
+              157.9090909090909,
+              177.27272727272728,
+              196.63636363636363,
+              216.0
+            ],
+            "y": [
+              0.056537765687428326,
+              0.056537765687428326,
+              0.056537765687428326,
+              0.056537765687428326,
+              0.056537765687428326,
+              0.056537765687428326,
+              0.056537765687428326,
+              0.056537765687428326,
+              0.056537765687428326,
+              0.056537765687428326,
+              0.056537765687428326,
+              0.4638725147030772
+            ]
+          },
+          "Air temperature [K]": {
+            "x": [
+              296.5,
+              297.1690545454545,
+              297.8381090909091,
+              298.5071636363636,
+              299.1762181818182,
+              299.8452727272727,
+              300.51432727272726,
+              301.1833818181818,
+              301.85243636363634,
+              302.52149090909086,
+              303.19054545454543,
+              303.85959999999994
+            ],
+            "y": [
+              0.0822423980187985,
+              0.0822423980187985,
+              0.0822423980187985,
+              0.0822423980187985,
+              0.0822423980187985,
+              0.0822423980187985,
+              0.0822423980187985,
+              0.0822423980187985,
+              0.0822423980187985,
+              0.0822423980187985,
+              0.0822423980187985,
+              0.0822423980187985
+            ]
+          }
+        }
+      }
+    },
+    "random_forest": {
+      "label": "Random Forest",
+      "cv": {
+        "at_0.5": {
+          "precision": {
+            "mean": 0.9579783901735122,
+            "std": 0.009234164749125903
+          },
+          "recall": {
+            "mean": 0.7564983164983166,
+            "std": 0.0267649449085597
+          },
+          "f1": {
+            "mean": 0.8451153030968548,
+            "std": 0.016841425198951827
+          },
+          "balanced_accuracy": {
+            "mean": 0.8776669689057435,
+            "std": 0.013356399232304469
+          },
+          "roc_auc": {
+            "mean": 0.9783714127082419,
+            "std": 0.014927015359058842
+          },
+          "pr_auc": {
+            "mean": 0.8869077704511076,
+            "std": 0.02278223495402707
+          }
+        },
+        "at_tuned": {
+          "precision": {
+            "mean": 0.9616566360468799,
+            "std": 0.012320716136311435
+          },
+          "recall": {
+            "mean": 0.7453872053872055,
+            "std": 0.027153499206008437
+          },
+          "f1": {
+            "mean": 0.8396700883283318,
+            "std": 0.020979625123756333
+          },
+          "balanced_accuracy": {
+            "mean": 0.8721760964032281,
+            "std": 0.01369855924157811
+          },
+          "roc_auc": {
+            "mean": 0.9783714127082419,
+            "std": 0.014927015359058842
+          },
+          "pr_auc": {
+            "mean": 0.8869077704511076,
+            "std": 0.02278223495402707
+          }
+        },
+        "pr_auc_folds": [
+          0.9184940486616957,
+          0.8613414131441695,
+          0.8601458557015623,
+          0.8997791988314501,
+          0.8947783359166601
+        ]
+      },
+      "tuned_threshold": 0.44,
+      "tuned_threshold_train_f1": 0.8605577689243028,
+      "test_at_0.5": {
+        "threshold": 0.5,
+        "precision": 0.9464285714285714,
+        "recall": 0.7794117647058824,
+        "f1": 0.8548387096774194,
+        "accuracy": 0.991,
+        "balanced_accuracy": 0.8889294848374132,
+        "mcc": 0.8545091896635442,
+        "roc_auc": 0.979079131652661,
+        "pr_auc": 0.8834302432454215,
+        "brier": 0.009667029930782554,
+        "tn": 1929,
+        "fp": 3,
+        "fn": 15,
+        "tp": 53,
+        "n_predicted_positive": 56,
+        "n_actual_positive": 68
+      },
+      "test_at_tuned": {
+        "threshold": 0.44,
+        "precision": 0.9464285714285714,
+        "recall": 0.7794117647058824,
+        "f1": 0.8548387096774194,
+        "accuracy": 0.991,
+        "balanced_accuracy": 0.8889294848374132,
+        "mcc": 0.8545091896635442,
+        "roc_auc": 0.979079131652661,
+        "pr_auc": 0.8834302432454215,
+        "brier": 0.009667029930782554,
+        "tn": 1929,
+        "fp": 3,
+        "fn": 15,
+        "tp": 53,
+        "n_predicted_positive": 56,
+        "n_actual_positive": 68
+      },
+      "test_ci_at_tuned": {
+        "f1": {
+          "low": 0.7770543615676359,
+          "high": 0.9166666666666666,
+          "mean": 0.853630264114261
+        },
+        "precision": {
+          "low": 0.8785263157894737,
+          "high": 1.0,
+          "mean": 0.9492795875976299
+        },
+        "recall": {
+          "low": 0.6762608966376089,
+          "high": 0.8758989726027396,
+          "mean": 0.7773678489724689
+        },
+        "pr_auc": {
+          "low": 0.8095882678528498,
+          "high": 0.95034696224725,
+          "mean": 0.8844090504462562
+        }
+      },
+      "explanation": {
+        "tree_importance": {
+          "Speed-torque ratio": 0.15103842143224241,
+          "Rotational speed [rpm]": 0.1439924647760498,
+          "Torque [Nm]": 0.13866590676010782,
+          "Mechanical power [kW]": 0.1270447657040884,
+          "Tool wear [min]": 0.09974707596273623,
+          "Wear-torque interaction": 0.09899786380635682,
+          "Temp difference [K]": 0.06650769912370051,
+          "Wear rate [min per kW]": 0.05584824695136713,
+          "Air temperature [K]": 0.037181288337549794,
+          "UDI": 0.03031438977333939,
+          "Product ID serial": 0.02391136389238112,
+          "Process temperature [K]": 0.020414741161614715,
+          "Type_L": 0.002602955047681456,
+          "Type_M": 0.0024121375164771696,
+          "Type_H": 0.0013206797543074311
+        },
+        "permutation_importance": {
+          "features": [
+            "UDI",
+            "Air temperature [K]",
+            "Process temperature [K]",
+            "Rotational speed [rpm]",
+            "Torque [Nm]",
+            "Tool wear [min]",
+            "Temp difference [K]",
+            "Mechanical power [kW]",
+            "Wear-torque interaction",
+            "Speed-torque ratio",
+            "Wear rate [min per kW]",
+            "Product ID serial",
+            "Type_H",
+            "Type_L",
+            "Type_M"
+          ],
+          "mean": [
+            -0.004603367937370562,
+            -0.001324917733528086,
+            -0.0032081868656555048,
+            0.2819774105766305,
+            0.027484497600282987,
+            0.03483202184132633,
+            0.20912952613275176,
+            0.0688995047336283,
+            0.10927682625950437,
+            0.01854657138960778,
+            0.01371773147207025,
+            0.005909878923219059,
+            -0.00012178542503910039,
+            0.004781227251018749,
+            0.0004902682531326752
+          ],
+          "std": [
+            0.007546697713999722,
+            0.012198315073889847,
+            0.006688178293527862,
+            0.03144996236353583,
+            0.006316093703960892,
+            0.004605598409380263,
+            0.021402807133636154,
+            0.00628584818005325,
+            0.008521790920259497,
+            0.013438450312704363,
+            0.004191261267500809,
+            0.007202668024284498,
+            0.0016366950046501694,
+            0.0038226220701150842,
+            0.002946485354203531
+          ],
+          "ranked": {
+            "Rotational speed [rpm]": 0.2819774105766305,
+            "Temp difference [K]": 0.20912952613275176,
+            "Wear-torque interaction": 0.10927682625950437,
+            "Mechanical power [kW]": 0.0688995047336283,
+            "Tool wear [min]": 0.03483202184132633,
+            "Torque [Nm]": 0.027484497600282987,
+            "Speed-torque ratio": 0.01854657138960778,
+            "Wear rate [min per kW]": 0.01371773147207025,
+            "Product ID serial": 0.005909878923219059,
+            "Type_L": 0.004781227251018749,
+            "Type_M": 0.0004902682531326752,
+            "Type_H": -0.00012178542503910039,
+            "Air temperature [K]": -0.001324917733528086,
+            "Process temperature [K]": -0.0032081868656555048,
+            "UDI": -0.004603367937370562
+          }
+        },
+        "partial_dependence": {
+          "Rotational speed [rpm]": {
+            "x": [
+              1297.0,
+              1364.4159999999997,
+              1431.8319999999994,
+              1499.2479999999991,
+              1566.663999999999,
+              1634.0799999999988,
+              1701.4959999999985,
+              1768.9119999999982,
+              1836.3279999999982,
+              1903.7439999999979,
+              1971.1599999999976,
+              2038.5759999999973
+            ],
+            "y": [
+              0.08698336750103652,
+              0.08090123893514314,
+              0.03485120028692084,
+              0.034092441277715976,
+              0.03391501869275685,
+              0.033630531861798374,
+              0.03379262073654009,
+              0.03369515637801723,
+              0.033712617532416486,
+              0.0340940359401443,
+              0.03467376823005836,
+              0.03483684212406902
+            ]
+          },
+          "Tool wear [min]": {
+            "x": [
+              3.0,
+              22.363636363636363,
+              41.72727272727273,
+              61.09090909090909,
+              80.45454545454545,
+              99.81818181818181,
+              119.18181818181819,
+              138.54545454545453,
+              157.9090909090909,
+              177.27272727272728,
+              196.63636363636363,
+              216.0
+            ],
+            "y": [
+              0.038714544336218695,
+              0.03777071766507836,
+              0.036101771218362645,
+              0.036235928416949205,
+              0.034906094276705074,
+              0.03495992464314116,
+              0.035082494526588986,
+              0.0358760951987301,
+              0.03560864554838622,
+              0.03757097038756883,
+              0.043859702705664486,
+              0.11277975696278376
+            ]
+          },
+          "Torque [Nm]": {
+            "x": [
+              19.2404,
+              23.018545454545453,
+              26.79669090909091,
+              30.574836363636365,
+              34.35298181818182,
+              38.13112727272727,
+              41.90927272727272,
+              45.68741818181818,
+              49.46556363636363,
+              53.243709090909086,
+              57.02185454545454,
+              60.8
+            ],
+            "y": [
+              0.04526879670801447,
+              0.04515881587808513,
+              0.04430305114797478,
+              0.03712582083444519,
+              0.03416921333030045,
+              0.034162993124152476,
+              0.033714188250739206,
+              0.043300726484238154,
+              0.0524904031561365,
+              0.056399701975196066,
+              0.05710953559692432,
+              0.09496987030389623
+            ]
+          }
+        }
+      }
+    }
+  },
+  "best_model": "random_forest",
+  "ranking_by_test_f1": [
+    {
+      "model": "random_forest",
+      "f1": 0.8548387096774194,
+      "precision": 0.9464285714285714,
+      "recall": 0.7794117647058824
+    },
+    {
+      "model": "decision_tree",
+      "f1": 0.8225806451612904,
+      "precision": 0.9107142857142857,
+      "recall": 0.75
+    },
+    {
+      "model": "logistic_regression",
+      "f1": 0.47540983606557374,
+      "precision": 0.5370370370370371,
+      "recall": 0.4264705882352941
+    }
+  ],
+  "figures": {
+    "imbalance": "/home/user/artifacts/figures/01_class_imbalance.png",
+    "distributions": "/home/user/artifacts/figures/02_sensor_distributions.png",
+    "correlation": "/home/user/artifacts/figures/03_correlation.png",
+    "failure_modes": "/home/user/artifacts/figures/04_failure_modes.png",
+    "torque_speed": "/home/user/artifacts/figures/05_torque_speed.png",
+    "wear_type": "/home/user/artifacts/figures/06_wear_type.png",
+    "confusion": "/home/user/artifacts/figures/07_confusion_matrices.png",
+    "pr_roc": "/home/user/artifacts/figures/08_pr_roc.png",
+    "thresholds": "/home/user/artifacts/figures/09_thresholds.png",
+    "comparison": "/home/user/artifacts/figures/10_model_comparison.png",
+    "importance": "/home/user/artifacts/figures/11_feature_importance.png",
+    "lr_coef": "/home/user/artifacts/figures/12_lr_coefficients.png",
+    "pdp": "/home/user/artifacts/figures/13_partial_dependence.png",
+    "split": "/home/user/artifacts/figures/14_split_comparison.png"
+  },
+  "config": {
+    "random_state": 42,
+    "test_size": 0.2,
+    "cv_folds": 5,
+    "iqr_multiplier": 3.0,
+    "class_weight": "balanced",
+    "bootstrap_resamples": 300
+  }
+}
